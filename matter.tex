@@ -240,6 +240,23 @@
 \pagenumbering{Alph}
 
 \ifthenelse{\equal{\useoverleaf}{0}}{}{\makecoverfile{}}%
+
+% Read from a temporary file created for the .pdf metadata
+\newread\metadata
+\immediate\openin\metadata=myfile.tmp
+\immediate\read\metadata to\tmpAuthor
+\immediate\read\metadata to\tmpTitle
+\immediate\read\metadata to\tmpKeywords
+\immediate\read\metadata to\tmpAbstract
+\immediate\closein\metadata
+
+% Configure .pdf metadata
+\hypersetup{
+  pdfauthor={\tmpAuthor},
+  pdftitle={\tmpTitle},
+  pdfkeywords={\tmpKeywords},
+  pdfsubject={\tmpAbstract},
+}
 \setcounter{page}{0}\includepdf[pages=-]{cover.pdf}
 
 % Uncomment to enable English

@@ -247,6 +247,14 @@ Office365 (Microsoft, https://www.office.com) for text writing and productivity.
 %%% Set the proper language or you will end with incorrect hyphenation!
 %\selectlanguage{english}
 
+% Write to a temporary file created for the .pdf metadata
+\newwrite\metadata
+\immediate\openout\metadata=myfile.tmp
+\immediate\write\metadata{{\ciAuthorFirst} {\ciAuthorLast}}
+\immediate\write\metadata{{\ciTitlePT}}
+\immediate\write\metadata{{\ciAbstractKeywords}}
+\immediate\write\metadata{Thesis/Dissertation of University of Aveiro} % Eventually, change to Abstract text {\ciAbstractText}
+\immediate\closeout\metadata
 
 \MakeCover
 \end{document}
